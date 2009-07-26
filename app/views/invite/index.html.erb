@@ -1,0 +1,48 @@
+<div class="left_col">
+    <h1>Invite someone to <span>Camtweet</span>!</h1>
+
+    <% if flash[:error] %>
+        <p><%= h flash[:error] %></p>
+    <% end %>
+
+    <% if flash[:notice] %>
+        <p><%= h flash[:notice] %></p>
+    <% end %>
+
+    <% if session[:user].invites > 0 %>
+        <p>Get your friends on Camtweet by posting a tweet with the form below. You have <strong style="color:red"><%= session[:user].invites %></strong> Invites remaining.</p>
+
+        <% form_tag '/invite/invite', :onsubmit => "if(chars_count < 0) return false;", :class => "form" do %>
+            <div>
+                <label for="screen_name">Twitter User</label>
+                <p>@<%= text_field_tag "screen_name", "", :autocomplete => "off", :style => "width:250px", :onkeydown => "chars_left();", :onkeyup => "chars_left()" %></p>
+            </div>
+            <div>
+                <label for="screen_name">Message</label>
+                <p><%= text_area_tag "message", "Join me on Camtweet and broadcast live", :autocomplete => "off", :style => "width: 400px;", :onkeydown => "chars_left();", :onkeyup => "chars_left()" %> <span id="count"></span></p>
+            </div>
+            <p class="small" id="tag"></p>
+            <div>
+                <%= submit_tag "Send" %>
+            </div>
+        <% end %>
+        <script>
+            function chars_left() {
+                chars_count = 140 - tag.length - $('screen_name').value.length - $('message').value.length - 3; // -3 is for the @ and two spaces
+                $('count').innerHTML = chars_count;
+            }
+        
+            var chars_count = 0;
+            var tag = "#camtweet_invite http://camtweet.com/login";
+            $('tag').innerHTML = tag;
+            chars_left();
+            $('screen_name').focus();
+        </script>
+    <% else %>
+        <p>Thanks for inviting your friends to Camtweet. You have no remaining invites.</p>
+    <% end %>
+
+    <% unless @invites.empty? %>
+        <p>You have invited: <%= @invites.map(&:invitee_screen_name).join(", ") %></p>
+    <% end %>
+</div>

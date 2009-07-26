@@ -1,0 +1,10 @@
+<h2 class="announcement"><%= link_to @broadcast.user.name, "http://twitter.com/#{@broadcast.user.screen_name}" %> <%= @broadcast.live? ? "is" : "was" %> live</h2>
+<div class="left_col_sm">
+    <div id="embed">
+        <%= @embed %>
+    </div>
+</div>
+
+<div class="right_col_lg">
+    <%= render :partial => "chat/twitter" %>
+</div>

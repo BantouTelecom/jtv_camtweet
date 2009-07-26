@@ -1,0 +1,291 @@
+/* reset */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+    margin: 0;
+    padding: 0;
+    font-family: Lucida Grande, Verdana, Arial, sans-serif;
+    line-height: 1.1;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,img { 
+    border: 0;
+}
+
+address,caption,cite,code,dfn,th,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol,ul {
+    list-style: none;
+}
+
+caption,th {
+    text-align: left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%;
+    font-weight: normal;
+    font-family: Lucida Grande, Verdana, Arial, sans-serif;
+}
+
+q:before,q:after {
+    content: '';
+}
+
+abbr,acronym { border:0;
+}
+
+/* end reset */
+
+body {
+    color: #222222;
+    font-family: Lucida Grande, Helvetica, Arial, sans-serif;
+    text-align: center;
+    background: #F0FFE1 url(/images/bg.png) repeat-x center top;
+}
+
+p {
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.small {
+    font-size: 0.8em;
+}
+
+a {
+    color: #0097A4;
+    font-size: 100%;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+h1 {
+    color: #787F72;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 0.73em;
+}
+
+h1 span {
+    color: #333333;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+}
+
+#wrapper {
+    width: 825px;
+    text-align: left;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.left_col, .right_col, .left_col_sm, .right_col_lg {
+    float: left;
+    margin-top: 20px;
+}
+
+.left_col {
+    width: 505px;
+    margin-right: 20px;
+}
+
+.right_col {
+    width: 300px;
+}
+
+.left_col_sm {
+    width: 340px;
+    margin-right: 20px;
+}
+
+.right_col_lg {
+    width: 465px;
+}
+
+h2.question {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+p.answer {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+#logo {
+    float: left;
+}
+
+.nick {
+    text-transform: capitalize;
+}
+
+h2.announcement {
+    clear: both;
+    margin-top: 15px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 2.0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: url(/images/000000_85.png) repeat left top;
+}
+
+.announcement span {
+}
+
+.announcement input {
+    vertical-align: top;
+}
+
+.form div {
+    margin-top: 15px;
+}
+
+/** Login / Navlinks **/
+
+#navlinks {
+    float: right;
+    margin-top: 10px;
+    padding: 10px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: #0097A4;
+}
+
+#navlinks a {
+    margin: 0 0 0 5px;
+    padding: 3px 5px;
+    color: #FFFFFF;
+    text-decoration: underline;
+    border: none;
+    background: #0097A4;
+}
+
+#navlinks.user a {
+    margin: 0;
+}
+
+#navlinks a.nopadding {
+    padding: 0;
+}
+
+#navlinks a:hover {
+    color: #0097A4;
+    text-decoration: none;
+    border: none;
+    background: #F0FFE1;
+}
+
+#navlinks input {
+    float: left;
+    margin: 5px;
+}
+
+#navlinks .nick {
+    margin-left: 5px;
+}
+
+/** Recent Broadcasts **/
+
+#recent_broadcasts .recent {
+    position: relative;
+    float: left;
+    margin: 0px 5px 5px 0px;
+    padding: 5px;
+    border-bottom: none;
+}
+
+#recent_broadcasts img {
+    width: 150px;
+    height: 113px;
+}
+
+#recent_broadcasts .overlay {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    font-size: 0.7em;
+    font-weight: bold;
+    background: url(/images/000000_25.png) repeat left top;
+    overflow: hidden;
+}
+
+#recent_broadcasts .live .overlay {
+    display: inline;
+}
+
+#recent_broadcasts a.recent:hover {
+    background: #0097A4;
+    border-bottom: none;
+}
+
+/** Publish **/
+
+.left_col_sm embed {
+    margin-top: -10px;
+}
+
+/** Chat **/
+
+#chat_embed {
+    width: 465px;
+    height: 500px;
+    border: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#status_list {
+    margin-bottom: 10px;
+}
+
+.status {
+    overflow: hidden;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #CCCCCC;
+}
+
+.status img {
+    float: left;
+}
+
+.status .text {
+    margin-left: 58px;
+}
+
+/** Footer **/
+
+#footer {
+    clear: both;
+    padding-top: 40px;
+    font-size: 0.7em;
+}
+
+#footer span {
+    padding: 5px 10px;
+    color: #666666;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background: #FFFFFF;
+}

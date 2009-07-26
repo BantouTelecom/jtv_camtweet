@@ -1,0 +1,45 @@
+<h2 class="announcement">
+    <span id="broadcast_prompt">Get ready to tweet live!</span>
+    <span id="broadcast_started" style="display:none">
+        You're live now at: <%= text_field_tag "", "", :id => "live_field", :style => "width:250px", :onclick => "this.select()" %>
+    </span>
+    <span id="broadcast_finished" style="display:none">
+        Your video was saved to: <%= text_field_tag "", "", :id => "clip_field", :style => "width:250px", :onclick => "this.select()" %>
+    </span>
+</h2>
+
+<div class="left_col_sm">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="340" height="350" id="publisher" align="middle">
+        <param name="allowScriptAccess" value="sameDomain" />
+        <param name="allowFullScreen" value="true" />
+        <param name="movie" value="/publisher.swf" />
+        <param name="quality" value="high" />
+        <param name="bgcolor" value="#000000" />
+        <param name="wmode" value="transparent" />
+        <param name="flashvars" value="stream_key=<%= @stream_key %>" />
+           <embed src="/publisher.swf" quality="high" bgcolor="#000000" wmode="transparent" width="340" height="350" name="publisher" align="middle" allowScriptAccess="sameDomain" allowFullScreen="true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="stream_key=<%= @stream_key %>" />
+    </object>
+</div>
+
+<div class="right_col_lg">
+    <div id="chat_container"></div>
+</div>
+
+<script>
+function on_broadcast_start(uid){
+    $('broadcast_prompt').hide();
+    $('broadcast_started').show();
+    new Ajax.Updater("chat_container", "/chat/twitter?uid=" + uid, {method: 'GET', evalScripts: true});
+    $('live_field').value = "http://www.camtweet.com/s/" + uid;
+    window.onbeforeunload = function(){
+        return "If you leave, it will stop your broadcast! Sure you want to stop your broadcast?";
+    }
+}
+
+function on_broadcast_finish(uid){
+    $('broadcast_started').hide();
+    $('broadcast_finished').show();
+    $('clip_field').value = "http://www.camtweet.com/s/" + uid;
+    window.onbeforeunload = function(){}
+}
+</script>

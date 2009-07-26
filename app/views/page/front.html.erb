@@ -1,0 +1,17 @@
+<div class="left_col" id="recent_broadcasts">
+    <% if true %>
+        <h1 id="learn_more">Want to find out more about <span>Camtweet</span>?</h1>
+        <p>You should email us at <%= link_to "camtweet@justin.tv", "mailto:camtweet@justin.tv" %></p>
+    <% else %>
+        <% broadcasts = Broadcast.find(:all, :conditions => "ended_at is null or clip_images not like '%anonymous_monkey%'", :order => "created_at desc", :limit => 9) %>
+        <% for broadcast in broadcasts %>
+            <% if broadcast.image_url("large") %>
+                <%= link_to image_tag(broadcast.image_url("large")) + "<span class='overlay'>Live</span>", "/s/#{broadcast.uid}", :class => (broadcast.live? ? "live recent" : "old recent") %>
+            <% else %>
+                <%= link_to image_tag("http://static.justin.tv/previews/screencap_404_150x113.png") + "<span class='overlay'>Live</span>", "/s/#{broadcast.uid}",  :class => (broadcast.live? ? "live recent" : "old recent") %>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>
+
+<%= render :partial => "right.rhtml" %>

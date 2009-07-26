@@ -1,0 +1,35 @@
+<% if @broadcast.live? %>
+
+<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.justin.tv/chat/embed?channel=<%= @broadcast.user.channel %>&hide_chat=jtv,facebook,myspace&default_chat=twitter&tweet_suffix=<%= CGI.escape "http://camtweet.com/s/#{params[:uid]}" %>"></iframe>
+
+<% else %>
+
+<div id="twitter_chat">
+    <div id="status_list"></div>    
+
+    <div id="status_form" <% unless session[:user] %>style="display:none"<% end %> class="form">
+        <% form_remote_tag :url => '/chat/tweet', :success => "add_statuses([request.responseJSON]); $('status').value = '';", :after => "$('send_button').disabled = true; $('status').disabled = true;", :complete => "$('send_button').disabled = false; $('status').disabled = false;" do %>
+            <%= text_area_tag "status", "", :rows => "3", :cols => "0", :style => "width:465px;margin-bottom:10px;", :autocomplete => "off" %>
+            <%= hidden_field_tag "uid", @broadcast.uid %>
+            <%= submit_tag "Update", :id => "send_button" %> or <%= link_to "logout", "/account/logout"%>
+        <% end %>
+    </div>
+    <div id="login_form" <% if session[:user] %>style="display:none"<% end %> class="form">
+        Sign in to participate in the discussion:
+        <% form_remote_tag :url => '/account/chat_login', :after => "$('login_button').disabled = true; $('screen_name').disabled = true; $('password').disabled = true;", :complete => "$('login_button').disabled = false; $('screen_name').disabled = false; $('password').disabled = false;", :success => "$('login_form').style.display = 'none'; $('status_form').style.display = '';" do %>
+            <p>Twitter Login: <%= text_field_tag "screen_name", "" %></p>
+            <p>Twitter Password: <%= password_field_tag "password", "" %></p>
+            <%= submit_tag "Login", :id => "login_button" %>
+        <% end %>
+    </div>
+</div>
+
+<script>
+var rendered_up_to_id = null;
+setInterval(function(){
+    update_status_list("<%= @broadcast.uid %>", rendered_up_to_id);
+}, 30 * 1000);
+update_status_list("<%= @broadcast.uid %>");
+</script>
+
+<% end %>

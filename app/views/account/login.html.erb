@@ -1,0 +1,19 @@
+<div class="left_col">
+    <h1>Login Here!</h1>
+
+    <%= render :partial => "login_form" %>
+
+    <% if flash[:error] %>
+        <p><%= h flash[:error] %></p>
+    <% end %>
+
+    <script>
+    $('screen_name').focus();
+    </script>
+</div>
+
+<div class="right_col">
+    <p><strong>Use your Twitter login and password to sign in to Camtweet.</strong></p>
+    <p>Camtweet is currently an invite-only application. To get an invite, find one of your friends who has an account and ask them to hook you up!</p>
+    <p class="small"><em>Note</em>: You'll know you've been invited when you see an @ message from the user who invited you.</p>
+</div>

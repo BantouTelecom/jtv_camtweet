@@ -1,0 +1,9 @@
+<% form_tag "/account/login#{"_with_invite_code" if defined?(invite_code)}" do %>
+    <%= text_field_tag "screen_name", params[:screen_name] || "Twitter Login", :autocomplete => "on", :onclick => "this.select()" %>
+    <%= password_field_tag "password", params[:password] ? "" : "Twitter Password", :autocomplete => "off", :onclick => "this.select()" %>
+    <% if defined?(invite_code) %>
+        <br />
+        Invite Code: <%= text_field_tag "invite_code", invite_code, :autocomplete => "off" %>
+    <% end %>
+    <%= submit_tag "Login" %>
+<% end %>

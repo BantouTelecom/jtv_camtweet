@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title><%= @page_title || 'Camtweet' %></title>
+        <%= javascript_include_tag :defaults %>
+        <%= stylesheet_link_tag "application" %>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <%= link_to image_tag("/images/logo.png", :id => "logo"), "/" %>
+                <% if params[:action] != "login" && !@no_login %>
+                    <div class="<%= 'user' unless session[:user] %>" id="navlinks">
+                        <% if session[:user] %>
+                            <span class="nick"><%= session[:user].screen_name %></span>
+                            <%= link_to "Broadcast", "/broadcast/publish" %>
+                            <% if session[:user].invites > 0 %>
+                                <%= link_to "Invites (#{ session[:user].invites})", "/invite/" %>
+                            <% end %>
+                            <%= link_to "Logout", "/account/logout" %>
+                        <% else %>
+                            If you have an invite, login <%= link_to "here", "/login", :class => "nopadding" %>.
+                            <%#= render :partial => "account/login_form" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div style="clear:both"></div>
+            <%= yield %>
+            
+        </div>
+        
+        <div id="footer">
+            <span>©2009 <%= link_to "Justin.tv", "http://www.justin.tv" %> Inc<% if false %>, Built on top of the free Justin.tv API available <%= link_to "here", "http://apiwiki.justin.tv/" %>. Camtweet code available on <%= link_to "github", "http://justintv.github.com/camtweet" %><% end %>.</span>
+        </div>
+        
+        <% if ENV['analytics'] %>
+            <script type="text/javascript">
+                var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <script type="text/javascript">
+                try {
+                    var pageTracker = _gat._getTracker("<%= ENV['analytics'] %>");
+                    pageTracker._trackPageview();
+                } catch(err) {}
+            </script>
+        <% end %>
+    </body>
+</html>

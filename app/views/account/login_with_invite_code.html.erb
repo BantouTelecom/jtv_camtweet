@@ -1,0 +1,18 @@
+<div class="left_col">
+    <h1>Login here with your invite code!</h1>
+
+    <%= render :partial => "login_form", :locals => {:invite_code => params[:invite_code]} %>
+
+    <% if flash[:error] %>
+        <p><%= h flash[:error] %></p>
+    <% end %>
+
+    <script>
+    $('screen_name').focus();
+    </script>
+</div>
+
+<div class="right_col">
+    <p><strong>Use your Twitter login and password to sign in to Camtweet.</strong></p>
+    <p>Camtweet is currently an invite-only application. We've given out a limited number of invite codes to our initial users. If you have one, log in here! Otherwise, ask one of your friends who's using Camtweet to hook you up.</p>
+</div>
